@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+        }
+
+        nav a {
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            background-color: #555;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to My Sample Page</h1>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<main>
+    <h2>Home</h2>
+    <p>This is a sample home page content.</p>
+
+    <h2 id="about" class="hidden">About</h2>
+    <p id="aboutText" class="hidden">This is a sample about page content.</p>
+
+    <h2 id="contact" class="hidden">Contact</h2>
+    <p id="contactText" class="hidden">This is a sample contact page content.</p>
+</main>
+
+<footer>
+    &copy; 2025 Sample Page
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const links = document.querySelectorAll('nav a');
+        const sections = document.querySelectorAll('main > h2');
+        const paragraphs = document.querySelectorAll('main > p');
+
+        links.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                sections.forEach(section => section.classList.add('hidden'));
+                paragraphs.forEach(paragraph => paragraph.classList.add('hidden'));
+
+                const targetId = link.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                const targetParagraph = document.getElementById(targetId + 'Text');
+
+                if (targetSection && targetParagraph) {
+                    targetSection.classList.remove('hidden');
+                    targetParagraph.classList.remove('hidden');
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
